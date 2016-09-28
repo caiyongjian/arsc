@@ -5,6 +5,7 @@
 
 
 #include "ArscFile.h"
+#include "myapp.h"
 
 arsc::arsc(QWidget *parent)
     : QMainWindow(parent)
@@ -35,12 +36,19 @@ void arsc::open()
 
     if (fileDialog->exec() == QDialog::Accepted) {
         QString path = fileDialog->selectedFiles()[0];
-        ArscFile sf(path);
-        sf.parseFile();
-//        WorkThread *localWorkThread = new WorkThread();
-//        localWorkThread->start();
-//        QMessageBox::information(NULL, tr("path"), tr("you selected ") + path);
+		Manager::getInstance()->addWork(path, this);
     } else {
         QMessageBox::information(NULL, tr("path"), tr("you didn't select files."));
     }
 }
+
+void arsc::onResult(ArscFile* result) {
+	if (result == Q_NULLPTR)
+	{
+		QMessageBox::information(NULL, tr("path"), tr("parse error!!!"));
+		return;
+	}
+	QMessageBox::information(NULL, tr("path"), tr("parse success!!!"));
+
+}
+

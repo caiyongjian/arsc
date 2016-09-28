@@ -74,7 +74,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="text">
-    <string>Open(Alt + O)</string>
+    <string>Open(Ctrl + O)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
